@@ -257,7 +257,7 @@ plt.plot(sFCV2x, sFCV2y, 'firebrick', alpha=0.5)
 
 
 plt.tight_layout()
-plt.savefig('.\cage_shape_figure\cage_shift.png', dpi=300)
+plt.savefig('.\cage_shape_figure\cage_shift.png', dpi=600)
 
 ############################# lengths - Initial #################################
 
