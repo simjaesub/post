@@ -31,14 +31,14 @@ def readFhsim( fname ):
     return dict_data
 # >>>>>>>>>>>>>>>>>>>>>>do not change>>>>>>>>>>>>
 
-resu=readFhsim("..\\resu32.csv");
-
-import matplotlib.pyplot as plt
-plt.figure()
-x=resu['Time']
-y1=resu['mooring3']['frameCableU0_0_ForceA'][:,0]
-
-plt.plot(x,y1)
-plt.show()
-
+# resu=readFhsim("..\\resu32.csv");
+#
+# import matplotlib.pyplot as plt
+# plt.figure()
+# x=resu['Time']
+# y1=resu['mooring3']['frameCableU0_0_ForceA'][:,0]
+#
+# plt.plot(x,y1)
+# plt.show()
+#
 
