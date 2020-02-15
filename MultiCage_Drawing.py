@@ -18,13 +18,18 @@ plt.rcParams['font.size'] = '10'
 plt.rcParams["mathtext.default"] = "it"
 plt.rcParams["mathtext.fontset"] = "stix"
 
-##################################
+###############  Insert Rows and Columns of the cages  ###################
 cage_row = 1
 cage_column = 4
 centers = []
 for i in range(cage_row):
     for j in range(cage_column):
-        centers.append([0 + 100 * j, 0 + 100 * i])
+        centers.append([-(cage_column * 100) / 2 + 50 + j * 100, -(cage_row * 100 / 2) + 50 + i * 100])
+
+CofFCU = []
+CofFCV = []
+CofU = []
+CofV = []
 
 r = 25
 circletheta = np.linspace(0, 2 * np.pi, 100)
@@ -109,25 +114,37 @@ for cage in centers:
         by = [buoyy[3], cage[1] - r * np.sin(conP4[i])]
         plt.plot(bx, by, '-k')
 
-    for i in range(-25, 25, 4):
+    for i in range(-25, 25, 8):
         y = i + cage[1]
         plt.hlines(y, cage[0] - np.sqrt(r ** 2 - (y - cage[1]) ** 2), cage[0] + np.sqrt(r ** 2 - (y - cage[1]) ** 2),
-                   colors='k', linestyle='solid')
-    for i in range(-25, 25, 4):
+                   colors='k', linestyle='solid', zorder=1)
+    for i in range(-25, 25, 8):
         x = i + cage[0]
         plt.vlines(x, cage[1] - np.sqrt(r ** 2 - (x - cage[0]) ** 2), cage[1] + np.sqrt(r ** 2 - (x - cage[0]) ** 2),
-                   colors='k', linestyle='solid')
+                   colors='k', linestyle='solid', zorder=2)
     if centers.index(cage) <= 3:
-        plt.text(cage[0] - 25, cage[1] + 37, 'Cage ' + str(centers.index(cage) + 1), weight='bold', fontsize=10,
-                 color='k')
+        plt.text(cage[0] - 8, cage[1] - 5, str(centers.index(cage) + 1), weight='bold', fontsize=18,
+                 color='firebrick', zorder=3)
     else:
         plt.text(cage[0] - 20, cage[1] - 46, 'Cage ' + str(centers.index(cage) + 1), weight='bold', fontsize=10,
                  color='firebrick')
 
+    ###### cable notation ###########
+
+    plt.text(-250, 55, 'U1', weight='bold')
+    if cage[:] == [-150, 0]:
+        a = [50, 50, 50, 50, -50, -50, -50, -50]
+        b = [0, 100, 200, 300, 0, 100, 200, 300]
+        for i in range(8):
+            CofFCU.append([cage[0] + b[i], cage[1] + a[i]])
+            if i <= 3:
+                plt.text(CofFCU[i][0] - 20, CofFCU[i][1] + 4, 'FCU' + str(i + 1), color='k', weight='bold')
+            else:
+                plt.text(CofFCU[i][0] - 20, CofFCU[i][1] - 15, 'FCU' + str(i + 1), color='k', weight='bold')
     # add cage number
     plt.axis('off')
     plt.gca().invert_yaxis()
-    # plt.tight_layout()
+    plt.tight_layout()
     plt.savefig('multicage_drawing.png', dpi=600)
     plt.show()
     #
