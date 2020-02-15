@@ -130,8 +130,8 @@ import numpy as np
 mat = np.ones((27, 118))
 theta = np.arange(0, 100, 10)
 for failure in failuremodes:
-    matgen(10, failure)
-
+    matgen(70, failure)
+deg_console1_mat = 70
 # import pandas as pd
 # shit = pd.DataFrame(mat)
 
