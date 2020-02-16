@@ -259,7 +259,9 @@ plt.plot(sFCV2x, sFCV2y, 'firebrick', alpha=0.5)
 plt.tight_layout()
 plt.savefig('.\cage_shape_figure\cage_shift.png', dpi=600)
 
-############################# lengths - Initial #################################
+## TODO The lengths of the cables should be considered in 3D.Below codes for the lengths are only considered in 2D
+
+############################# lengths - Initial ##############################
 
 Len_U1 = np.sqrt((U1x[0] - U1x[1]) ** 2 + (U1y[0] - U1y[1]) ** 2)
 Len_U2 = np.sqrt((U2x[0] - U2x[1]) ** 2 + (U2y[0] - U2y[1]) ** 2)
@@ -276,7 +278,7 @@ Len_FCU2 = np.sqrt((FCU2x[0] - FCU2x[1]) ** 2 + (FCU2y[0] - FCU2y[1]) ** 2)
 Len_FCV1 = np.sqrt((FCV1x[0] - FCV1x[1]) ** 2 + (FCV1y[0] - FCV1y[1]) ** 2)
 Len_FCV2 = np.sqrt((FCV2x[0] - FCV2x[1]) ** 2 + (FCV2y[0] - FCV2y[1]) ** 2)
 
-############################# lengths - after loading #################################
+############################# lengths - after loading ########################
 
 Len_sU1 = np.sqrt((sU1x[0] - sU1x[1]) ** 2 + (sU1y[0] - sU1y[1]) ** 2)
 Len_sU2 = np.sqrt((sU2x[0] - sU2x[1]) ** 2 + (sU2y[0] - sU2y[1]) ** 2)
@@ -292,3 +294,57 @@ Len_sFCU1 = np.sqrt((sFCU1x[0] - sFCU1x[1]) ** 2 + (sFCU1y[0] - sFCU1y[1]) ** 2)
 Len_sFCU2 = np.sqrt((sFCU2x[0] - sFCU2x[1]) ** 2 + (sFCU2y[0] - sFCU2y[1]) ** 2)
 Len_sFCV1 = np.sqrt((sFCV1x[0] - sFCV1x[1]) ** 2 + (sFCV1y[0] - sFCV1y[1]) ** 2)
 Len_sFCV2 = np.sqrt((sFCV2x[0] - sFCV2x[1]) ** 2 + (sFCV2y[0] - sFCV2y[1]) ** 2)
+
+############## Length Bridles - Intact/failure(underloading)##################
+Len_bridle_intact = np.zeros((12, 1))
+
+Len_bridle_fail = np.zeros((12, 1))
+############ Intact model Bridle 1 to 3 #######################
+for i in range(len(conP1)):
+    bx = [buoy3_pos[0], center[0] + r * np.cos(conP1[i])]
+    by = [buoy3_pos[1], center[1] - r * np.sin(conP1[i])]
+    Len_bridle_intact[i][0] = np.sqrt((bx[0] - bx[1]) ** 2 + (by[0] - by[1]) ** 2)
+    # plt.plot(bx, by, '-k')
+    ############ Bridle 4 to 6 #######################    
+for i in range(len(conP2)):
+    bx = [buoy1_pos[0], center[0] + r * np.cos(conP2[i])]
+    by = [buoy1_pos[1], center[1] - r * np.sin(conP2[i])]
+    Len_bridle_intact[i + 3][0] = np.sqrt((bx[0] - bx[1]) ** 2 + (by[0] - by[1]) ** 2)
+    # plt.plot(bx, by, '-k')
+    ############ Bridle 7 to 9 #######################
+for i in range(len(conP3)):
+    bx = [buoy2_pos[0], center[0] + r * np.cos(conP3[i])]
+    by = [buoy2_pos[1], center[1] - r * np.sin(conP3[i])]
+    Len_bridle_intact[i + 6][0] = np.sqrt((bx[0] - bx[1]) ** 2 + (by[0] - by[1]) ** 2)
+    # plt.plot(bx, by, '-k')
+    ############ Bridle 10 to 12 #####################
+for i in range(len(conP1)):
+    bx = [buoy4_pos[0], center[0] + r * np.cos(conP4[i])]
+    by = [buoy4_pos[1], center[1] - r * np.sin(conP4[i])]
+    Len_bridle_intact[i + 9][0] = np.sqrt((bx[0] - bx[1]) ** 2 + (by[0] - by[1]) ** 2)
+    # plt.plot(bx, by, '-k')
+############Failure mode -  Bridle 1 to 3 #######################
+
+
+for i in range(len(conP1)):
+    bx = [buoy3_pos2[0], center2[0] + r * np.cos(conP1[i])]
+    by = [buoy3_pos2[1], center2[1] - r * np.sin(conP1[i])]
+    Len_bridle_fail[i][0] = np.sqrt((bx[0] - bx[1]) ** 2 + (by[0] - by[1]) ** 2)
+    ############ Bridle 4 to 6 #######################    
+for i in range(len(conP2)):
+    bx = [buoy1_pos2[0], center2[0] + r * np.cos(conP2[i])]
+    by = [buoy1_pos2[1], center2[1] - r * np.sin(conP2[i])]
+    Len_bridle_fail[i + 3][0] = np.sqrt((bx[0] - bx[1]) ** 2 + (by[0] - by[1]) ** 2)
+    # plt.plot(bx, by, color='firebrick', alpha=0.5)
+    ############ Bridle 7 to 9 #######################
+for i in range(len(conP3)):
+    bx = [buoy2_pos2[0], center2[0] + r * np.cos(conP3[i])]
+    by = [buoy2_pos2[1], center2[1] - r * np.sin(conP3[i])]
+    Len_bridle_fail[i + 6][0] = np.sqrt((bx[0] - bx[1]) ** 2 + (by[0] - by[1]) ** 2)
+    # plt.plot(bx, by, color='firebrick', alpha=0.5)
+    ############ Bridle 10 to 12 #####################
+for i in range(len(conP1)):
+    bx = [buoy4_pos2[0], center2[0] + r * np.cos(conP4[i])]
+    by = [buoy4_pos2[1], center2[1] - r * np.sin(conP4[i])]
+    Len_bridle_fail[i + 9][0] = np.sqrt((bx[0] - bx[1]) ** 2 + (by[0] - by[1]) ** 2)
+    # plt.plot(bx, by, color='firebrick', alpha=0.5)
