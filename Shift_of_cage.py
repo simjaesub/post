@@ -8,10 +8,12 @@ Created on Wed Feb  5 18:31:44 2020
 import pickle
 
 ######## intact model ########################
-# with open('..\\Results_singlecage_intact_d\\dprocessed_Mul1x1Vel0.5Degree0.csv', 'rb') as handle:
+# with open('..\\..\\OneDrive - Universitetet i Stavanger\\Fhsim_wake\\bin\\Results_singlecage_intact_d\\dprocessed_Mul1x1Vel0.5Degree0.csv', 'rb') as handle:
 #     resu = pickle.load(handle)
 ######## failed model ########################
-with open('..\\Results_singlecage_failure\\U1_fail\\dprocessed_Mul1x1Vel0.5Degree0_U1_fail.csv', 'rb') as handle:
+with open(
+        '..\\..\\OneDrive - Universitetet i Stavanger\\Fhsim_wake\\bin\\Results_singlecage_failure\\V1_fail\\dprocessed_Mul1x1Vel0.5Degree70_V1_fail.csv',
+        'rb') as handle:
     resu = pickle.load(handle)
 
 import numpy as np
@@ -225,11 +227,11 @@ for i in range(-25, 25, 4):
                center2[1] + np.sqrt(r ** 2 - (x - center2[0]) ** 2), colors='firebrick', linestyle='solid', alpha=0.5)
 
 ########### Mooring lines ############
-# plt.plot(sU1x, sU1y,'firebrick',alpha = 0.5)
+plt.plot(sU1x, sU1y, 'firebrick', alpha=0.5)
 plt.plot(sU2x, sU2y, 'firebrick', alpha=0.5)
 plt.plot(sU3x, sU3y, 'firebrick', alpha=0.5)
 plt.plot(sU4x, sU4y, 'firebrick', alpha=0.5)
-plt.plot(sV1x, sV1y, 'firebrick', alpha=0.5)
+# plt.plot(sV1x, sV1y, 'firebrick', alpha=0.5)
 plt.plot(sV2x, sV2y, 'firebrick', alpha=0.5)
 plt.plot(sV3x, sV3y, 'firebrick', alpha=0.5)
 plt.plot(sV4x, sV4y, 'firebrick', alpha=0.5)
