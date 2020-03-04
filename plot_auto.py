@@ -12,8 +12,8 @@ plt.style.use('default')
 
 plt.figure(figsize=(6.3, 3.6)) # generate a figure which the figure size in rinche
 def animate(i):
-    resu=fr.readresu("..\\4x2_vel04_deg0.csv") # the file name should be the same with your outputfile
-    x=resu['Time']                      # plot the parameters with time
+    resu = fr.readresu("..\\sibaljotgatne.csv")  # the file name should be the same with your outputfile
+    x = resu['Time']  # plot the parameters with time
     plt.cla()
     for i in range(8):
         if i<4:
