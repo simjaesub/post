@@ -4,7 +4,7 @@ import pickle
 with open('..\\..\\Results_singlecage_intact_d\\dprocessed_Mul1x1Vel0.5Degree0.csv', 'rb') as handle:
     resu = pickle.load(handle)
 
-with open('..\\..\\Results_singlecage_intact_d\\Processed_Initial_condition_vel05_singlecage.csv', 'rb') as handle:
+with open('..\\..\\Results_singlecage_intact_d\\Processed_Initial_condition_vel0_singlecage.csv', 'rb') as handle:
     resui = pickle.load(handle)
 
 anchors = [[-150, -50, 80],
@@ -58,17 +58,17 @@ fc_lens[0][0] = np.sqrt(x_fcu1 ** 2 + y_fcu1 ** 2 + z_fcu1 ** 2)
 x_fcu2 = Steelplate[1][0] - Steelplate[3][0]
 y_fcu2 = Steelplate[1][1] - Steelplate[3][1]
 z_fcu2 = Steelplate[1][2] - Steelplate[3][2]
-fc_lens[1][0] = np.sqrt(x_fcu1 ** 2 + y_fcu1 ** 2 + z_fcu1 ** 2)
+fc_lens[1][0] = np.sqrt(x_fcu2 ** 2 + y_fcu2 ** 2 + z_fcu2 ** 2)
 
 x_fcv1 = Steelplate[0][0] - Steelplate[1][0]
 y_fcv1 = Steelplate[0][1] - Steelplate[1][1]
 z_fcv1 = Steelplate[0][2] - Steelplate[1][2]
-fc_lens[2][0] = np.sqrt(x_fcu1 ** 2 + y_fcu1 ** 2 + z_fcu1 ** 2)
+fc_lens[2][0] = np.sqrt(x_fcv1 ** 2 + y_fcv1 ** 2 + z_fcv1 ** 2)
 
 x_fcv2 = Steelplate[2][0] - Steelplate[3][0]
 y_fcv2 = Steelplate[2][1] - Steelplate[3][1]
 z_fcv2 = Steelplate[2][2] - Steelplate[3][2]
-fc_lens[3][0] = np.sqrt(x_fcu1 ** 2 + y_fcu1 ** 2 + z_fcu1 ** 2)
+fc_lens[3][0] = np.sqrt(x_fcv2 ** 2 + y_fcv2 ** 2 + z_fcv2 ** 2)
 
 ## Cable lengths for the single cage without loading
 U_lens_i = np.zeros((4, 1))
@@ -86,25 +86,25 @@ for i in range(0, 4):
     V_lens_i[i][0] = np.sqrt(x ** 2 + y ** 2 + z ** 2)
 
 fc_lens_i = np.zeros((4, 1))
-x_fcu1 = Steelplate_i[0][0] - Steelplate_i[2][0]
-y_fcu1 = Steelplate_i[0][1] - Steelplate_i[2][1]
-z_fcu1 = Steelplate_i[0][2] - Steelplate_i[2][2]
-fc_lens_i[0][0] = np.sqrt(x_fcu1 ** 2 + y_fcu1 ** 2 + z_fcu1 ** 2)
+x_fcu1_i = Steelplate_i[0][0] - Steelplate_i[2][0]
+y_fcu1_i = Steelplate_i[0][1] - Steelplate_i[2][1]
+z_fcu1_i = Steelplate_i[0][2] - Steelplate_i[2][2]
+fc_lens_i[0][0] = np.sqrt(x_fcu1_i ** 2 + y_fcu1_i ** 2 + z_fcu1_i ** 2)
 
-x_fcu2 = Steelplate_i[1][0] - Steelplate_i[3][0]
-y_fcu2 = Steelplate_i[1][1] - Steelplate_i[3][1]
-z_fcu2 = Steelplate_i[1][2] - Steelplate_i[3][2]
-fc_lens_i[1][0] = np.sqrt(x_fcu1 ** 2 + y_fcu1 ** 2 + z_fcu1 ** 2)
+x_fcu2_i = Steelplate_i[1][0] - Steelplate_i[3][0]
+y_fcu2_i = Steelplate_i[1][1] - Steelplate_i[3][1]
+z_fcu2_i = Steelplate_i[1][2] - Steelplate_i[3][2]
+fc_lens_i[1][0] = np.sqrt(x_fcu2_i ** 2 + y_fcu2_i ** 2 + z_fcu2_i ** 2)
 
-x_fcv1 = Steelplate_i[0][0] - Steelplate_i[1][0]
-y_fcv1 = Steelplate_i[0][1] - Steelplate_i[1][1]
-z_fcv1 = Steelplate_i[0][2] - Steelplate_i[1][2]
-fc_lens_i[2][0] = np.sqrt(x_fcu1 ** 2 + y_fcu1 ** 2 + z_fcu1 ** 2)
+x_fcv1_i = Steelplate_i[0][0] - Steelplate_i[1][0]
+y_fcv1_i = Steelplate_i[0][1] - Steelplate_i[1][1]
+z_fcv1_i = Steelplate_i[0][2] - Steelplate_i[1][2]
+fc_lens_i[2][0] = np.sqrt(x_fcv1_i ** 2 + y_fcv1_i ** 2 + z_fcv1_i ** 2)
 
-x_fcv2 = Steelplate[2][0] - Steelplate[3][0]
-y_fcv2 = Steelplate[2][1] - Steelplate[3][1]
-z_fcv2 = Steelplate[2][2] - Steelplate[3][2]
-fc_lens_i[3][0] = np.sqrt(x_fcu1 ** 2 + y_fcu1 ** 2 + z_fcu1 ** 2)
+x_fcv2_i = Steelplate_i[2][0] - Steelplate_i[3][0]
+y_fcv2_i = Steelplate_i[2][1] - Steelplate_i[3][1]
+z_fcv2_i = Steelplate_i[2][2] - Steelplate_i[3][2]
+fc_lens_i[3][0] = np.sqrt(x_fcv2_i ** 2 + y_fcv2_i ** 2 + z_fcv2_i ** 2)
 
 ############################
 for i in range(len(U_lens)):
