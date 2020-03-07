@@ -252,11 +252,10 @@ for i in range(0, 13):
 for i in range(0, 48):
     All_cables[len(Mooring_lines) + 1 + len(Frame_cables) + 1 + i][:] = Bridles[i][:]
 
-import pandas as pd
+# import pandas as pd
+# ## convert your array into a dataframe
+# df = pd.DataFrame(All_cables)
 
-## convert your array into a dataframe
-df = pd.DataFrame(All_cables)
-
-## save to xlsx file
-filepath = 'Length_cables(1x4_initial_intact).xlsx'
-df.to_excel(filepath, index=False)
+# ## save to xlsx file
+# filepath = 'Length_cables(1x4_initial_intact).xlsx'
+# df.to_excel(filepath, index=False)
