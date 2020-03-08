@@ -4,6 +4,9 @@ Created on Sun Feb 16 19:05:00 2020
 
 @author: Jaesub Sim
 """
+##### Enter Flow direction
+Deg = '20'
+########################
 
 import pickle
 
@@ -11,11 +14,11 @@ import pickle
 with open('processed_resu1x4_noloading.csv', 'rb') as handle:
     resu_nl = pickle.load(handle)
 ######## intact model ########################
-with open('..\\..\\Results_1x4cages_intact_c\\cprocessed_Mul1x4Vel0.5Degree20.csv', 'rb') as handle:
+with open('..\\..\\Results_1x4cages_intact_c\\cprocessed_Mul1x4Vel0.5Degree' + str(Deg) + '.csv', 'rb') as handle:
     resui = pickle.load(handle)
 ######## failed model ########################
-with open('..\\..\\Results_1x4cages_failure\\U2\\cprocessed_Mul1x4Vel0.5Degree20.csv', 'rb') as handle:
-    resu = pickle.load(handle)
+# with open('..\\..\\Results_1x4cages_failure\\U2\\cprocessed_Mul1x4Vel0.5Degree'+str(Deg)+'.csv', 'rb') as handle:
+#     resu = pickle.load(handle)
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -268,4 +271,4 @@ for cage in range(0, 4):
 plt.axis('off')
 plt.axis('equal')
 plt.tight_layout(pad=0)
-plt.savefig('1x4_shifted_state_intact.png', dpi=600)
+plt.savefig('1x4_shifted_state_intact_deg' + str(Deg) + '.png', dpi=600)

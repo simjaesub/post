@@ -5,11 +5,11 @@ Created on Sun Feb 16 19:05:00 2020
 @author: Jaesub Sim
 """
 ##### Enter failed cable
-Fail = 'V4'
+Fail = 'U2'
 ########################
 
 ##### Enter Flow direction
-Deg = '50'
+Deg = '20'
 ########################
 Failure_mode = ['U1', 'U2', 'U3', 'U4', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'FCU1', 'FCU2',
                 'FCU3', 'FCU4', 'FCU5', 'FCU6', 'FCU7', 'FCU8', 'FCV1', 'FCV2', 'FCV3', 'FCV4', 'FCV5']
@@ -290,4 +290,4 @@ for cage in range(0, 4):
 plt.axis('off')
 plt.axis('equal')
 plt.tight_layout(pad=0)
-plt.savefig('1x4_shifted_state_failure(50deg_intact_failure).png', dpi=600)
+plt.savefig('1x4_shifted_state_failure(' + str(Deg) + 'deg_' + str(Fail) + '_Fail).png', dpi=600)

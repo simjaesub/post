@@ -13,7 +13,7 @@ mat = np.ones((10, 118))
 
 def matgen(deg):
     with open(
-            '..\\..\\..\\OneDrive - Universitetet i Stavanger\\Fhsim_wake\\bin\\Results_1x4cages_intact_c\\cprocessed_Mul1x4Vel0.5Degree' + str(
+            '..\\..\\Results_1x4cages_intact_c\\cprocessed_Mul1x4Vel0.5Degree' + str(
                 deg) + '.csv', 'rb') as handle:
         resu = pickle.load(handle)
 

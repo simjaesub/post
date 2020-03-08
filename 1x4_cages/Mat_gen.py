@@ -86,12 +86,10 @@ def matgen(degree, failure):
         mat[fmodes.index(failure)][len(anchors) + 1 + len(fcables) + 1 + len(bridles) + 1 + i] = vol_fail[0][i]
 
     ###########Matrix column 83 - 86: total drag force of the cage (percentage of deviation compared to correspoding failure mode) #################################
-    drag_intact = np.zeros((1, 4))
-    for i in range(0, 4):
-        drag_intact[0][i] = np.mean(resuF['NetStructure0']['NodeSumDragForceAbs'][240:250, 0]) / 1000
+
     drag_fail = np.zeros((1, 4))
     for i in range(0, 4):
-        drag_fail[0][i] = np.mean(resuF['NetStructure0']['NodeSumDragForceAbs'][980:1000, 0]) / 1000
+        drag_fail[0][i] = np.mean(resuF['NetStructure' + str(i)]['NodeSumDragForceAbs'][980:1000, 0]) / 1000
         mat[fmodes.index(failure)][
             len(anchors) + 1 + len(fcables) + 1 + len(bridles) + 1 + len(vol_fail[0][:]) + 1 + i] = drag_fail[0][i]
 

@@ -1,9 +1,9 @@
 ##### Enter failed cable
-Fail = 'V3'
+Fail = 'FCU1'
 ########################
 
 ##### Enter Flow direction
-Deg = '90'
+Deg = '20'
 ########################
 
 
