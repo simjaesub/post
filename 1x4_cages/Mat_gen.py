@@ -4,21 +4,18 @@ Created on Fri Jan 31 17:31:57 2020
 
 @author: shuer
 """
+import numpy as np
+import pickle
 
 
 def matgen(degree, failure):
-    import numpy as np
-    import pickle
-    with open('..\\..\\..\\OneDrive - Universitetet i Stavanger\\Fhsim_wake\\bin\\Results_1x4cages_failure\\' + str(
-            failure) + '\\cprocessed_Mul1x4Vel0.5Degree' + str(
+    with open('..\\..\\Results_1x4cages_intact_c\\cprocessed_Mul1x4Vel0.5Degree' + str(degree) + '.csv',
+              'rb') as handle:
+        resu = pickle.load(handle)
+
+    with open('..\\..\\Results_1x4cages_failure\\' + str(failure) + '\\cprocessed_Mul1x4Vel0.5Degree' + str(
             degree) + '.csv', 'rb') as handle:
         resuF = pickle.load(handle)
-
-    with open(
-            '..\\..\\..\\OneDrive - Universitetet i Stavanger\\Fhsim_wake\\bin\\Results_1x4cages_intact_c\\cprocessed_Mul1x4Vel0.5Degree' + str(
-                    degree) + '.csv',
-            'rb') as handle:
-        resu = pickle.load(handle)
 
     anchors = ['U1', 'U2', 'U3', 'U4', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10']
     anchors2 = ['U0_0_ForceA', 'U1_0_ForceA', 'U0_6_ForceB', 'U1_6_ForceB', 'V0_0_ForceA', 'V1_0_ForceA',
@@ -125,13 +122,12 @@ def matgen(degree, failure):
 
 failuremodes = ['U1', 'U2', 'U3', 'U4', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10',
                 'FCU1', 'FCU2', 'FCU3', 'FCU4', 'FCU5', 'FCU6', 'FCU7', 'FCU8', 'FCV1', 'FCV2', 'FCV3', 'FCV4', 'FCV5']
-import numpy as np
 
 mat = np.ones((27, 118))
-theta = np.arange(0, 100, 10)
+
 for failure in failuremodes:
-    matgen(70, failure)
-deg_console1_mat = 70
+    matgen(10, failure)
+
 # import pandas as pd
 # shit = pd.DataFrame(mat)
 

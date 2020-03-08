@@ -5,11 +5,11 @@ Created on Sun Feb 16 19:05:00 2020
 @author: Jaesub Sim
 """
 ##### Enter failed cable
-Fail = 'U2'
+Fail = 'V4'
 ########################
 
 ##### Enter Flow direction
-Deg = '20'
+Deg = '50'
 ########################
 Failure_mode = ['U1', 'U2', 'U3', 'U4', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'FCU1', 'FCU2',
                 'FCU3', 'FCU4', 'FCU5', 'FCU6', 'FCU7', 'FCU8', 'FCV1', 'FCV2', 'FCV3', 'FCV4', 'FCV5']
@@ -17,11 +17,11 @@ Failure_mode = ['U1', 'U2', 'U3', 'U4', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7'
 import pickle
 
 # initial condition (no-loading)
-with open('..\\1x4_cages\\processed_resu1x4_noloading.csv', 'rb') as handle:
-    resu_nl = pickle.load(handle)
+# with open('..\\1x4_cages\\processed_resu1x4_noloading.csv', 'rb') as handle:
+#     resu_nl = pickle.load(handle)
 ######## intact model ########################
-# with open('..\\..\\Results_1x4cages_intact_c\\cprocessed_Mul1x4Vel0.5Degree20.csv', 'rb') as handle:
-#     resu = pickle.load(handle)
+with open('..\\..\\Results_1x4cages_intact_c\\cprocessed_Mul1x4Vel0.5Degree' + str(Deg) + '.csv', 'rb') as handle:
+    resu_nl = pickle.load(handle)
 ######## failed model ########################
 with open('..\\..\\Results_1x4cages_failure\\' + str(Fail) + '\\cprocessed_Mul1x4Vel0.5Degree' + str(Deg) + '.csv',
           'rb') as handle:
@@ -290,4 +290,4 @@ for cage in range(0, 4):
 plt.axis('off')
 plt.axis('equal')
 plt.tight_layout(pad=0)
-plt.savefig('1x4_shifted_state_failure.png', dpi=600)
+plt.savefig('1x4_shifted_state_failure(50deg_intact_failure).png', dpi=600)
