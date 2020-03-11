@@ -13,7 +13,9 @@ theta = np.arange(0, 100, 10)
 for i in theta:
     with open('..\\..\\Results_singlecage_intact_d\\dprocessed_Mul1x1Vel0.5Degree' + str(i) + '.csv', 'rb') as handle:
         resui = pickle.load(handle)
-    pos_intact = np.append(pos_intact, resui['collar0']['FloaterCenterPos'][250, :])
+    pos_intact = np.append(pos_intact, [np.mean(resui['collar0']['FloaterCenterPos'][240:250, 0]),
+                                        np.mean(resui['collar0']['FloaterCenterPos'][240:250, 1]),
+                                        np.mean(resui['collar0']['FloaterCenterPos'][240:250, 2])])
 colloar_i = np.reshape(pos_intact, (10, 3))
 
 fail = ['U1', 'U2', 'U3', 'U4', 'V1', 'V2', 'V3', 'V4', 'FCU1', 'FCU2', 'FCV1',
@@ -26,7 +28,9 @@ for deg in theta:
                 deg) + '_' + str(i) + '_fail.csv', 'rb') as handle:
             resuf = pickle.load(handle)
 
-        pos_fail = np.append(pos_fail, resuf['collar0']['FloaterCenterPos'][1000, :])
+        pos_fail = np.append(pos_fail, [np.mean(resuf['collar0']['FloaterCenterPos'][900:1000, 0]),
+                                        np.mean(resuf['collar0']['FloaterCenterPos'][900:1000, 1]),
+                                        np.mean(resuf['collar0']['FloaterCenterPos'][900:1000, 2])])
     collar_f = np.reshape(pos_fail, (12, 3))
 
     for j in range(0, 12):
