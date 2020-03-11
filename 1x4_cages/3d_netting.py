@@ -35,9 +35,9 @@ pos = np.zeros((321, 3))
 zorder = list(zorder)
 
 for i in range(1, 322):
-    pos[i - 1][0] = resu['NetStructure0']['Pos_' + str(i)][250, 0]
-    pos[i - 1][1] = resu['NetStructure0']['Pos_' + str(i)][250, 1]
-    pos[i - 1][2] = resu['NetStructure0']['Pos_' + str(i)][250, 2]
+    pos[i - 1][0] = resu['NetStructure0']['Pos_' + str(i)][0, 0]
+    pos[i - 1][1] = resu['NetStructure0']['Pos_' + str(i)][0, 1]
+    pos[i - 1][2] = resu['NetStructure0']['Pos_' + str(i)][0, 2]
 # X = np.zeros((321,1))
 # Y = np.zeros((321,1))
 # Z = np.zeros((321,1))
@@ -51,6 +51,8 @@ posxz = np.delete(pos, 1, 1)
 posyz = np.delete(pos, 0, 1)
 
 import operator
+
+repos = sorted(pos, key=operator.itemgetter(2))
 
 re_pos = sorted(posxz, key=operator.itemgetter(1))
 re_pos2 = sorted(posyz, key=operator.itemgetter(1))
@@ -159,36 +161,30 @@ WholeLayers.append(layer10)
 
 #######
 
-h_twinex = []
-h_twiney = []
-h_twinez = []
-midpointx = []
-midpointy = []
-midpointz = []
+X_layer3 = []
+Y_layer3 = []
+Z_layer3 = []
+for i in range(0, 33):
+    X_layer3.append(layer3[i][0])
 
-for i in range(0, 10):
-    for j in range(0, 33):
-        midpointx.append(WholeLayers[i][j][0])
-        midpointy.append(WholeLayers[i][j][1])
-        midpointz.append(WholeLayers[i][j][2])
-    h_twinex.append(midpointx)
-    h_twiney.append(midpointy)
-    h_twinez.append(midpointz)
-    midpointx = []
-    midpointy = []
-    midpointz = []
+for i in range(0, 33):
+    Y_layer3.append(layer3[i][1])
+
+for i in range(0, 33):
+    Z_layer3.append(layer3[i][2])
 
 fig = plt.figure()
-ax1 = fig.gca(projection='3d')
-plt.gca().invert_yaxis()
-ax1.invert_zaxis()
+ax = plt.gca(projection='3d')
+plt.gca().invert_zaxis()
+# ax.scatter(X,Y,Z)
+# ax.plot(pos[:,0],pos[:,1], pos[:,2])
 
-# plt.plot(h_twinex[0], h_twiney[0], h_twinez[0], 'k')
-# plt.plot(h_twinex[1], h_twiney[1], h_twinez[1], 'k')
-# plt.plot(h_twinex[2], h_twiney[2], h_twinez[2], 'k')
-ax1.scatter(X, Y, Z)
-for i in range(0, 32):
-    plt.text(h_twinex[5][i], h_twiney[5][i], s='pos' + str(i))
-plt.axis('off')
-# for i in range(0,10):
-#     plt.plot(h_twinex[i], h_twiney[i], h_twinez[i], 'k')
+for i in range(0, 10):
+    ax.plot(WholeLayers[i][:, 0], WholeLayers[i][:, 1], WholeLayers[i][:, 2])
+
+# plt.figure()
+# for i in range(0,33):
+#     plt.scatter(WholeLayers[3][i,0], WholeLayers[3][i,1])
+#     plt.text(WholeLayers[3][i,0], WholeLayers[3][i,1], 'node'+str(i+1))
+
+# plt.plot(WholeLayers[3][:,0], WholeLayers[3][:,1])
