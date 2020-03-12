@@ -2,7 +2,7 @@
 
 Note: please import **magicFun** in your main process.
 do as follows:
-import magicFun as mf
+```import magicFun as mf```
 
 There are two functions in magicFun. 
 
