@@ -9,14 +9,14 @@ import pickle
 pos_intact = np.array([])
 pos_fail = np.array([])
 
-theta = np.arange(0, 100, 10)
+theta = np.arange(0, 10, 10)
 for i in theta:
     with open('..\\..\\Results_singlecage_intact_d\\dprocessed_Mul1x1Vel0.5Degree' + str(i) + '.csv', 'rb') as handle:
         resui = pickle.load(handle)
     pos_intact = np.append(pos_intact, [np.mean(resui['collar0']['FloaterCenterPos'][240:250, 0]),
                                         np.mean(resui['collar0']['FloaterCenterPos'][240:250, 1]),
                                         np.mean(resui['collar0']['FloaterCenterPos'][240:250, 2])])
-colloar_i = np.reshape(pos_intact, (10, 3))
+colloar_i = np.reshape(pos_intact, (len(theta), 3))
 
 fail = ['U1', 'U2', 'U3', 'U4', 'V1', 'V2', 'V3', 'V4', 'FCU1', 'FCU2', 'FCV1',
         'FCV2']
