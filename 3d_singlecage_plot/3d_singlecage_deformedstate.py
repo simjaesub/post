@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import magicFun as mf
+import magicFun_initial as mfi
 
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams["figure.figsize"] = (18.3, 9.5)
@@ -10,13 +11,13 @@ plt.rcParams["mathtext.default"] = "it"
 plt.rcParams["mathtext.fontset"] = "stix"
 import pickle
 
-with open('..\\..\Results_singlecage_intact_d\\dprocessed_Mul1x1Vel0.5Degree0.csv', 'rb') as handle:
+with open('dprocessed_Mul1x1Vel0.5Degree0.csv', 'rb') as handle:
     resui = pickle.load(handle)
 
 ############
 # Enter Time#
 
-time = 0
+time = 250
 ############
 
 ## Anchor positions : U anchors and V anchors in turn
@@ -104,8 +105,17 @@ for i in range(1, 322):
     pos_i[i - 1][1] = resui['NetStructure0']['Pos_' + str(i)][time, 1]
     pos_i[i - 1][2] = resui['NetStructure0']['Pos_' + str(i)][time, 2]
 
+pos_ini = np.zeros((321, 3))
+for i in range(1, 322):
+    pos_ini[i - 1][0] = resui['NetStructure0']['Pos_' + str(i)][0, 0]
+    pos_ini[i - 1][1] = resui['NetStructure0']['Pos_' + str(i)][0, 1]
+    pos_ini[i - 1][2] = resui['NetStructure0']['Pos_' + str(i)][0, 2]
+
 mf.drawCageV(pos_i, ax1)
 mf.drawCageH(pos_i, ax1)
+
+mfi.drawCageV(pos_ini, ax1)
+mfi.drawCageH(pos_ini, ax1)
 
 ##### Bridles
 
