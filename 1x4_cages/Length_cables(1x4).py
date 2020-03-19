@@ -141,8 +141,9 @@ for cage in range(0, 4):
         Bz.append(buoy[2 + 2 * cage][2] - center[cage][2] + r * np.cos(conP4[i]))
 for i in range(0, 48):
     Bridles[i][0] = np.sqrt(Bx[i] ** 2 + By[i] ** 2 + Bz[i] ** 2)
-
-# ######################################### shifted cage ###################################################3
+'''
+# ######################################### shifted cage ###################################################
+'''
 ## Center point of cages - pos after loading
 center2 = []
 for i in range(0, 4):

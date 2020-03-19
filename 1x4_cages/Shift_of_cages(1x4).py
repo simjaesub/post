@@ -33,18 +33,18 @@ plt.rcParams["mathtext.fontset"] = "stix"
 ## Center point of cages - initial pos before loading ##
 center = []
 for i in range(0, 4):
-    center.append(resu_nl['collar' + str(i)]['FloaterCenterPos'][1000, 0:2])
+    center.append(resu_nl['collar' + str(i)]['FloaterCenterPos'][1000, 0:3])
 
 ## Center point of cages - pos after loading ##
 center2 = []
 ### Intact model - 250, Failure mode - 1000 ###
 for i in range(0, 4):
-    center2.append(resui['collar' + str(i)]['FloaterCenterPos'][250, 0:2])
+    center2.append(resui['collar' + str(i)]['FloaterCenterPos'][250, 0:3])
 ## Buoy positions
 buoy = []
 for i in range(0, 5):
     for j in range(0, 2):
-        buoy.append(resu_nl['mooring3']['platePosition' + str(i) + '_' + str(j)][1000, 0:2])
+        buoy.append(resu_nl['mooring3']['platePosition' + str(i) + '_' + str(j)][1000, 0:3])
 
 anchor_pos = [[-300, -50],
               [-300, 50],
@@ -161,14 +161,15 @@ for cage in range(0, 4):
         x = i + center[cage][0]
         plt.vlines(x, center[cage][1] - np.sqrt(r ** 2 - (i) ** 2),
                    center[cage][1] + np.sqrt(r ** 2 - (i) ** 2), colors='k', linestyle='solid')
-
-# ######################################### shifted cage ###################################################3
+'''
+# ######################################### shifted cage ###################################################
+'''
 
 ## Buoy positions
 buoy_s = []
 for i in range(0, 5):
     for j in range(0, 2):
-        buoy_s.append(resui['mooring3']['platePosition' + str(i) + '_' + str(j)][250, 0:2])
+        buoy_s.append(resui['mooring3']['platePosition' + str(i) + '_' + str(j)][250, 0:3])
 
 ##################### mooring lines ##################################
 
@@ -267,6 +268,31 @@ for cage in range(0, 4):
         x = i + center2[cage][0]
         plt.vlines(x, center2[cage][1] - np.sqrt(r ** 2 - (i) ** 2),
                    center2[cage][1] + np.sqrt(r ** 2 - (i) ** 2), color='firebrick', alpha=0.5, linestyle='solid')
+
+'''Length of initial frame cables'''
+length_fcu_initial = [100.6, 100.9, 100.9, 100.6, 100.6, 100.9, 100.9, 100.6]
+length_fcv_initial = [101.2, 100.6, 100.7, 100.6, 101.2]
+'''Length of intact_model frame cables'''
+length_fcu_intact = [103.2, 102.5, 101.2, 92.5, 103.4, 102.5, 100.9, 93.6]
+length_fcv_intact = [98.9, 99.2, 100.4, 101.0, 102.6]
+
+for i in range(0, 8):
+    x = FCUx[i][0] + 40
+    y = FCUy[i][0] - 3
+    plt.text(x, y, str(length_fcu_initial[i]), fontweight='bold')
+for i in range(0, 8):
+    x = FCUx[i][0] + 40
+    y = FCUy[i][0] + 13
+    plt.text(x, y, str(length_fcu_intact[i]), color='firebrick', fontweight='bold')
+
+for i in range(0, 5):
+    x = FCVx[i][0] - 10
+    y = FCVy[i][0] + 50
+    plt.text(x, y, str(length_fcv_initial[i]), fontweight='bold')
+for i in range(0, 5):
+    x = FCVx[i][0] - 10
+    y = FCVy[i][0] + 63
+    plt.text(x, y, str(length_fcv_intact[i]), color='firebrick', fontweight='bold')
 
 plt.axis('off')
 plt.axis('equal')
